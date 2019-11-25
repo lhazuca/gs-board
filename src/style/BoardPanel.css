@@ -1,0 +1,21 @@
+.container {
+    display: grid;
+    width: 400px;
+    height: 100%; 
+    position: relative;
+  }
+
+.board{
+    grid-column: 1;
+    grid-row: 1
+}
+
+.right-arrows{
+    grid-column: 2;
+    grid-row: 1
+}
+
+.bottom-arrows{
+    grid-column: 1;
+    grid-row: 2
+}

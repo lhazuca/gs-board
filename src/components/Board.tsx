@@ -87,8 +87,6 @@ export class Board extends React.Component<BoardProps, BoardState> {
               </tr>
             </tbody>
         </table>
-        {this.renderRightArrow()}
-        {this.renderBottomArrow()}
         </div>
         );
     }
@@ -108,8 +106,7 @@ export class Board extends React.Component<BoardProps, BoardState> {
                     <img alt="arrow" className="arrow-img" src= "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/>
                 </button>
             );
-        }
-        
+        }  
     }
 
     renderBottomArrow(){
