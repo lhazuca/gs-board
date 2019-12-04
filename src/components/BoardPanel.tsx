@@ -22,30 +22,46 @@ class BoardPanel extends React.Component<BoardPanelProps,BoardPanelState>{
         }
     }
 
-    handleRightArrowClick(){
+    handleRightArrowClickRight(){
         this.setState({columnsQuantity : this.state.columnsQuantity + 1})
     }
 
-    handleLeftArrowClick(){
+    handleRightArrowClickLeft(){
+        this.setState({columnsQuantity : Math.max(this.state.columnsQuantity - 1,1)})
+    }
+
+    handleLeftArrowClickUp(){
         this.setState({rowsQuantity : this.state.rowsQuantity + 1})
+    }
+
+    handleLeftArrowClickDown(){
+        this.setState({rowsQuantity : Math.max(this.state.rowsQuantity - 1,1)})
     }
 
     renderRightArrow(){
         if(this.props.editable){
             return(
-                <button className="right-arrow-button arrow-button" onClick={() => this.handleRightArrowClick()}>
-                    <img alt="arrow" className="arrow-img" src= "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/>
-                </button>
+                <div className="">
+                    <button className="right-arrow-button arrow-button" onClick={() => this.handleRightArrowClickRight()}>
+                        <img alt="arrow" className="arrow-img" src= "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/>
+                    </button>
+                    <button className="arrow-button" onClick={() => this.handleRightArrowClickLeft()}>
+                        <img alt="arrow" className="arrow-img arrow-img-left" src= "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/>
+                    </button>
+                </div>
             );
         }  
     }
 
-    renderBottomArrow(){
+    renderTopArrow(){
         if(this.props.editable){
             return(
-                <div>
-                    <button className="left-arrow-button arrow-button" onClick={() => this.handleLeftArrowClick()}>
-                        <img alt="arrow" className="bottom-arrow-img arrow-img" src= "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/>
+                <div className="">
+                    <button className="top-arrow-button arrow-button" onClick={() => this.handleLeftArrowClickDown()}>
+                        <img alt="arrow" className="top-arrow-img-down arrow-img" src= "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/>
+                    </button>
+                    <button className="arrow-button" onClick={() => this.handleLeftArrowClickUp()}>
+                        <img alt="arrow" className="top-arrow-img-up arrow-img" src= "https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/>
                     </button>
                 </div>
             );
@@ -74,8 +90,8 @@ class BoardPanel extends React.Component<BoardPanelProps,BoardPanelState>{
                 <div className="right-arrows">
                     {this.renderRightArrow()}
                 </div>
-                <div className="bottom-arrows">
-                    {this.renderBottomArrow()}
+                <div className="top-arrows">
+                    {this.renderTopArrow()}
                 </div>
             </div>
         );
