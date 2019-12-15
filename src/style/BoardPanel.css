@@ -5,9 +5,16 @@
     position: relative;
   }
 
+.panel{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row: 1;
+    left:50%
+}
+
 .board{
     grid-column: 1;
-    grid-row: 2
+    grid-row: 3
 }
 
 .arrow-img{
@@ -38,7 +45,13 @@
     top : 50%;
 }
 
+.wrapper{
+    align-content: center
+}
+
 .top-arrow-button{
+    justify-self: center;
+    align-self: center;
     position: relative;
     left : 50%;
 }
@@ -54,12 +67,12 @@
 
 .right-arrows{
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 3;
     align-self: center
 }
 
 .top-arrows{
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
     align-self: center
-}
+}  
