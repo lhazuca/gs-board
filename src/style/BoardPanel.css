@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    width: 350px;
+    width: 30px;
     height: 100%; 
     position: relative;
   }
@@ -46,14 +46,17 @@
 }
 
 .wrapper{
-    align-content: center
+    clear: left;
+    float: left; 
+    position: relative; 
+    left: 50%;
 }
 
 .top-arrow-button{
-    justify-self: center;
-    align-self: center;
-    position: relative;
-    left : 50%;
+    display: block; 
+    float: left; 
+    position: relative; 
+    right: 50%;
 }
 
 .arrow-button{
@@ -74,5 +77,9 @@
 .top-arrows{
     grid-column: 1;
     grid-row: 2;
-    align-self: center
+    align-self: center;
 }  
+
+.input-size{
+    width: 120px
+}
