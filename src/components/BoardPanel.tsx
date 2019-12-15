@@ -68,7 +68,7 @@ class BoardPanel extends React.Component<BoardPanelProps,BoardPanelState>{
     renderRightArrows(){
         if(this.props.editable){
             return(
-                <div className="">
+                <div>
                     <button className="right-arrow-button arrow-button" onClick={() => this.handleRightArrowClickRight()}>
                         <img alt="arrow" className="arrow-img" src= {arrowImgSrc}/>
                     </button>
@@ -107,21 +107,23 @@ class BoardPanel extends React.Component<BoardPanelProps,BoardPanelState>{
 
     render(){
         return(
-            <div className="container">
+            <div>
                 {this.renderSizePanel()}
-                <div className="board">
-                    <Board 
-                    editable={this.props.editable}
-                    key={Math.random()}
-                    columnsQuantity={this.state.columnsQuantity} 
-                    rowsQuantity={this.state.rowsQuantity} 
-                    header={this.state.header} />
-                </div>
-                <div className="right-arrows">
-                    {this.renderRightArrows()}
-                </div>
-                <div className="top-arrows">
-                    {this.renderTopArrows()}
+                <div className="container">
+                    <div className="board">
+                        <Board 
+                        editable={this.props.editable}
+                        key={Math.random()}
+                        columnsQuantity={this.state.columnsQuantity} 
+                        rowsQuantity={this.state.rowsQuantity} 
+                        header={this.state.header} />
+                    </div>
+                    <div className="right-arrows">
+                        {this.renderRightArrows()}
+                    </div>
+                    <div className="top-arrows">
+                        {this.renderTopArrows()}
+                    </div>
                 </div>
             </div>
         );
