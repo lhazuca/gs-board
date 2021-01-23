@@ -217,34 +217,37 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
         return [...Array(this.state.cells.getColumnsQuantity()).keys()].map(coordX => {
             const coord: CellLocation = [coordX, coordY];
             return (
-                <td key={coordX}><Cell isHeader={this.isHeader(coordX, coordY)}
-                                       content={this.state.cells.getCell(coord)}
-                                       addBlue={() => this.setState({
-                                           cells: this.state.cells.addBlueAtOn(coord)
-                                       })}
-                                       removeBlue={() => this.setState({
-                                           cells: this.state.cells.removeBlueAtOn(coord)
-                                       })}
-                                       addBlack={() => this.setState({
-                                           cells: this.state.cells.addBlackAtOn(coord)
-                                       })}
-                                       removeBlack={() => this.setState({
-                                           cells: this.state.cells.removeBlackAtOn(coord)
-                                       })}
-                                       addGreen={() => this.setState({
-                                           cells: this.state.cells.addGreenAtOn(coord)
-                                       })}
-                                       removeGreen={() => this.setState({
-                                           cells: this.state.cells.removeGreenAtOn(coord)
-                                       })}
-                                       addRed={() => this.setState({
-                                           cells: this.state.cells.addRedAtOn(coord)
-                                       })}
-                                       removeRed={() => this.setState({
-                                           cells: this.state.cells.removeRedAtOn(coord)
-                                       })}
-                />
-
+                <td onClickCapture={(e) => {
+                    e.stopPropagation();
+                    this.setState({header: coord})
+                }} key={coordX}>
+                    <Cell isHeader={this.isHeader(coordX, coordY)}
+                          content={this.state.cells.getCell(coord)}
+                          addBlue={() => this.setState({
+                              cells: this.state.cells.addBlueAtOn(coord)
+                          })}
+                          removeBlue={() => this.setState({
+                              cells: this.state.cells.removeBlueAtOn(coord)
+                          })}
+                          addBlack={() => this.setState({
+                              cells: this.state.cells.addBlackAtOn(coord)
+                          })}
+                          removeBlack={() => this.setState({
+                              cells: this.state.cells.removeBlackAtOn(coord)
+                          })}
+                          addGreen={() => this.setState({
+                              cells: this.state.cells.addGreenAtOn(coord)
+                          })}
+                          removeGreen={() => this.setState({
+                              cells: this.state.cells.removeGreenAtOn(coord)
+                          })}
+                          addRed={() => this.setState({
+                              cells: this.state.cells.addRedAtOn(coord)
+                          })}
+                          removeRed={() => this.setState({
+                              cells: this.state.cells.removeRedAtOn(coord)
+                          })}
+                    />
                 </td>)
         });
     }
