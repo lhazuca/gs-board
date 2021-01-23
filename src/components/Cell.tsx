@@ -6,11 +6,9 @@ type CellState = {
     isHeader: boolean;
 }
 
-export interface CellContent {
-    red: number;
-    green:number;
-    black:number;
-    blue:number;
+export type AttireContent = {
+    image:string,
+    text:string
 }
 
 type CellProps = {
@@ -24,6 +22,7 @@ type CellProps = {
     removeRed: () => void;
     addGreen: () => void;
     removeGreen: () => void;
+    attire:AttireContent;
 }
 
 export default class Cell extends React.Component<CellProps, CellState> {
@@ -43,7 +42,8 @@ export default class Cell extends React.Component<CellProps, CellState> {
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
-            <div className="gbs_gc border">
+            <div style={{backgroundImage : `url(${this.props.attire.image})`}} className="gbs_gc border">
+                <b className="cell__text">{this.props.attire.text}</b>
                 <table className={this.cssClass()}>
                     <tbody>
                     <tr>
