@@ -46,6 +46,7 @@ const basicAttire = {
 export default class Attire {
     attire :AttireJSON;
     constructor(att? : AttireJSON){
+        debugger;
             this.attire = att ? att : basicAttire;
     }
 

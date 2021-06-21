@@ -68,8 +68,8 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
             header: props.header,
             cells: props.editable ? new EditableBoard(props.columnsQuantity, props.rowsQuantity, props.boardInfo)
                 : new StaticBoard(props.columnsQuantity, props.rowsQuantity, props.boardInfo),
-            attire: new Attire(this.props.attire),
-            theme: new Theme().getThemeFor(this.props.theme)
+            attire: new Attire(props.attire),
+            theme: new Theme().getThemeFor(props.theme)
         };
         changeLenguage(props.language)
     }
@@ -329,6 +329,7 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
     private parseBoardFile(file: File) {
         //@ts-ignore
         file.text().then(text => GBB.parse(text)).then(board => {
+            debugger;
             this.setState({header: board.head, cells: new EditableBoard(board.width, board.height, board.board)})
         });
     }
