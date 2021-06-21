@@ -27,7 +27,7 @@ type BoardProps = {
     boardInfo?: CellInfo[][],
     attire: AttireJSON,
     theme: ThemeStringType,
-    language:LanguageStringType
+    language: LanguageStringType
 }
 
 type BorderProps = {
@@ -82,7 +82,7 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
         editable: false,
         attire: new Attire().getAttireJSON(),
         theme: new ClassicTheme(),
-        language:"en"
+        language: "en"
     }
 
 
@@ -130,7 +130,8 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
                                 headSetter={(coord => this.setState({header: coord}))} initialHead={this.state.header}
                                 exportGBB={(e) => this.handleExportGBB(e)}
                                 handleBoardLoaded={(e) => this.handleFileChange(e)}
-                                handleThemeChange={(theme => this.handleThemeChange(theme))}/>
+                                handleThemeChange={(theme => this.handleThemeChange(theme))}
+                                boardInfoSetter={(info) => this.state.cells.setBoardInfo(info)}/>
                             {this.renderTopArrows()}
                         </div>
                     </div>
@@ -323,7 +324,7 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
     private handleFileChange(event: ChangeEvent<HTMLInputElement>) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const header: Coord = this.parseBoardFile(event.target.files[0]);
+        this.parseBoardFile(event.target.files[0]);
     }
 
     private parseBoardFile(file: File) {
