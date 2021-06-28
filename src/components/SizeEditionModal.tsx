@@ -113,7 +113,7 @@ export const SizeEditionModal = ({
                             const rows = randomInt(3, 20);
                             columnQuantitySetter(columns);
                             rowQuantitySetter(rows);
-                            headSetter([columns, rows]);
+                            headSetter([0, 0]);
                             boardInfoSetter(Board.randomBoard(columns, rows));
                         }}>{t("Random")}</button>
                     </div>

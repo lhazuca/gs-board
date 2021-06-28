@@ -15,6 +15,7 @@ type BoardState = {
     cells: Board;
     attire: Attire;
     theme: AbstractTheme;
+    language : LanguageStringType
 }
 
 export type CellLocation = [number, number];
@@ -69,9 +70,10 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
             cells: props.editable ? new EditableBoard(props.columnsQuantity, props.rowsQuantity, props.boardInfo)
                 : new StaticBoard(props.columnsQuantity, props.rowsQuantity, props.boardInfo),
             attire: new Attire(props.attire),
-            theme: new Theme().getThemeFor(props.theme)
+            theme: new Theme().getThemeFor(props.theme),
+            language : props.language
         };
-        changeLenguage(props.language)
+        changeLenguage(this.state.language)
     }
 
     // Setea props por default
@@ -83,6 +85,12 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
         attire: new Attire().getAttireJSON(),
         theme: new ClassicTheme(),
         language: "en"
+    }
+
+    componentDidUpdate(prevProps:any) {
+        if(prevProps.attire !== this.props.attire) {
+            this.setState({attire: new Attire(this.props.attire)});
+          }
     }
 
 
@@ -122,7 +130,7 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
                             {this.renderRightArrows()}
                         </div>
                         <div className="top-arrows">
-                            <SizeEditionModal
+                            {this.props.editable?<SizeEditionModal
                                 initialRows={this.state.cells.getRowsQuantity()}
                                 initialColumns={this.state.cells.getColumnsQuantity()}
                                 rowQuantitySetter={(x) => this.handleChangeYSize(x)}
@@ -131,7 +139,7 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
                                 exportGBB={(e) => this.handleExportGBB(e)}
                                 handleBoardLoaded={(e) => this.handleFileChange(e)}
                                 handleThemeChange={(theme => this.handleThemeChange(theme))}
-                                boardInfoSetter={(info) => this.state.cells.setBoardInfo(info)}/>
+                                boardInfoSetter={(info) => this.state.cells.setBoardInfo(info)}/>:<div/>}
                             {this.renderTopArrows()}
                         </div>
                     </div>
