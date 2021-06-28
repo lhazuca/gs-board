@@ -6,6 +6,8 @@ import {CellLocation} from "./BoardComponent";
 import {ThemeSelect} from "./ThemeSelect";
 import {useTranslation} from 'react-i18next';
 import gearImgSrc from '../gear.png';
+import {CellInfo} from "@gobstones/gobstones-gbb-parser";
+import {Board} from "./Board";
 
 
 interface Props {
@@ -18,6 +20,7 @@ interface Props {
     exportGBB: (e: React.MouseEvent<HTMLButtonElement>) => void;
     handleBoardLoaded: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleThemeChange: (theme: string) => void;
+    boardInfoSetter: (cellInfo: CellInfo[][]) => void;
 }
 
 function NumericInput(props: { label: string, value: number, onChange: (e: number) => void }) {
@@ -43,7 +46,8 @@ export const SizeEditionModal = ({
                                      initialHead,
                                      exportGBB,
                                      handleBoardLoaded,
-                                     handleThemeChange
+                                     handleThemeChange,
+                                     boardInfoSetter
                                  }: Props) => {
     const [show, setShow] = useState(false);
     const [x, setX]: [number, (x: number) => void] = useState(initialColumns);
@@ -100,10 +104,18 @@ export const SizeEditionModal = ({
                         <button className='modal_button' onClick={() => {
                             columnQuantitySetter(4);
                             rowQuantitySetter(4);
-                            headSetter([0, 0])
+                            headSetter([0, 0]);
+                            boardInfoSetter(Board.initializeMatrix(4, 4));
                         }}>{t("New")}
                         </button>
-                        <button className='modal_button'>{t("Random")}</button>
+                        <button className='modal_button' onClick={() => {
+                            const columns = randomInt(3, 20);
+                            const rows = randomInt(3, 20);
+                            columnQuantitySetter(columns);
+                            rowQuantitySetter(rows);
+                            headSetter([0, 0]);
+                            boardInfoSetter(Board.randomBoard(columns, rows));
+                        }}>{t("Random")}</button>
                     </div>
                 </div>
                 <ThemeSelect onChange={event => handleThemeChange(event.target.value)}/>

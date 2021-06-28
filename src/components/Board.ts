@@ -1,4 +1,5 @@
 import {CellInfo, CellLocation} from "@gobstones/gobstones-gbb-parser";
+import {randomInt} from "../utils/random";
 
 export class Board {
     cells: CellInfo[][];
@@ -130,5 +131,20 @@ export class Board {
 
     getCellInfo(): CellInfo[][] {
         return this.cells;
+    }
+
+    setBoardInfo(info: CellInfo[][]) {
+        this.cells = info;
+    }
+
+    static randomBoard(columnsQuantity: number, rowsQuantity: number) {
+        let cells: CellInfo[][] = new Array(columnsQuantity)
+        for (let i = 0; i < columnsQuantity; i++) {
+            cells[i] = new Array(rowsQuantity);
+            for (let j = 0; j < rowsQuantity; j++) {
+                cells[i][j] = {a: randomInt(0, 12), r: randomInt(0, 5), n: randomInt(0, 15), v: randomInt(0, 7)}
+            }
+        }
+        return cells;
     }
 }

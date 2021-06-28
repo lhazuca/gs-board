@@ -15,6 +15,7 @@ type BoardState = {
     cells: Board;
     attire: Attire;
     theme: AbstractTheme;
+    language : LanguageStringType
 }
 
 export type CellLocation = [number, number];
@@ -27,7 +28,7 @@ type BoardProps = {
     boardInfo?: CellInfo[][],
     attire: AttireJSON,
     theme: ThemeStringType,
-    language:LanguageStringType
+    language: LanguageStringType
 }
 
 type BorderProps = {
@@ -68,10 +69,11 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
             header: props.header,
             cells: props.editable ? new EditableBoard(props.columnsQuantity, props.rowsQuantity, props.boardInfo)
                 : new StaticBoard(props.columnsQuantity, props.rowsQuantity, props.boardInfo),
-            attire: new Attire(this.props.attire),
-            theme: new Theme().getThemeFor(this.props.theme)
+            attire: new Attire(props.attire),
+            theme: new Theme().getThemeFor(props.theme),
+            language : props.language
         };
-        changeLenguage(props.language)
+        changeLenguage(this.state.language)
     }
 
     // Setea props por default
@@ -82,7 +84,13 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
         editable: false,
         attire: new Attire().getAttireJSON(),
         theme: new ClassicTheme(),
-        language:"en"
+        language: "en"
+    }
+
+    componentDidUpdate(prevProps:any) {
+        if(prevProps.attire !== this.props.attire) {
+            this.setState({attire: new Attire(this.props.attire)});
+          }
     }
 
 
@@ -122,7 +130,7 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
                             {this.renderRightArrows()}
                         </div>
                         <div className="top-arrows">
-                            <SizeEditionModal
+                            {this.props.editable?<SizeEditionModal
                                 initialRows={this.state.cells.getRowsQuantity()}
                                 initialColumns={this.state.cells.getColumnsQuantity()}
                                 rowQuantitySetter={(x) => this.handleChangeYSize(x)}
@@ -130,7 +138,8 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
                                 headSetter={(coord => this.setState({header: coord}))} initialHead={this.state.header}
                                 exportGBB={(e) => this.handleExportGBB(e)}
                                 handleBoardLoaded={(e) => this.handleFileChange(e)}
-                                handleThemeChange={(theme => this.handleThemeChange(theme))}/>
+                                handleThemeChange={(theme => this.handleThemeChange(theme))}
+                                boardInfoSetter={(info) => this.state.cells.setBoardInfo(info)}/>:<div/>}
                             {this.renderTopArrows()}
                         </div>
                     </div>
@@ -323,12 +332,13 @@ export class BoardComponent extends React.Component<BoardProps, BoardState> {
     private handleFileChange(event: ChangeEvent<HTMLInputElement>) {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const header: Coord = this.parseBoardFile(event.target.files[0]);
+        this.parseBoardFile(event.target.files[0]);
     }
 
     private parseBoardFile(file: File) {
         //@ts-ignore
         file.text().then(text => GBB.parse(text)).then(board => {
+            debugger;
             this.setState({header: board.head, cells: new EditableBoard(board.width, board.height, board.board)})
         });
     }

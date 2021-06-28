@@ -77,6 +77,7 @@ export class ClassicTheme extends AbstractTheme {
         this.setAmountColorTo("#FFF")
         this.setCellBackgroundColor("#FFF")
         this.setDefaultHeader()
+        this.setBorderColors("#ddd","black")
     }
 }
 
@@ -90,7 +91,8 @@ export class DeuteranopeTheme extends AbstractTheme {
         this.setStonesColorTo("deuteranope")
         this.setAmountColorTo("#FFF")
         this.setHeaderToDaltonism()
-        this.setCellBackgroundColor("#FFF")        
+        this.setCellBackgroundColor("#FFF")    
+        this.setBorderColors("#ddd","black")    
     }
 }
 
@@ -105,6 +107,7 @@ export class FlatTheme extends AbstractTheme {
         this.setAmountColorTo("#FFF")
         this.setCellBackgroundColor("#FFF")
         this.setDefaultHeader()
+        this.setBorderColors("#ddd","black")
     }
 }
 
@@ -134,6 +137,7 @@ export class LinesTheme extends AbstractTheme {
         this.setAmountColorTo("black")
         this.setCellBackgroundColor("#FFF")
         this.setDefaultHeader()
+        this.setBorderColors("#ddd","black")
     }
 }
 
@@ -148,6 +152,7 @@ export class ModernTheme extends AbstractTheme {
         this.setAmountColorTo("#FFF")
         this.setCellBackgroundColor("#FFF")
         this.setDefaultHeader()
+        this.setBorderColors("#ddd","black")
     }
 }
 
@@ -162,6 +167,7 @@ export class ProtanopeTheme extends AbstractTheme {
         this.setHeaderToDaltonism()
         this.setAmountColorTo("#FFF")
         this.setCellBackgroundColor("#FFF")
+        this.setBorderColors("#ddd","black")
     }
 }
 
@@ -176,6 +182,7 @@ export class ShapesTheme extends AbstractTheme {
         this.setAmountColorTo("#FFF")
         this.setCellBackgroundColor("#FFF")
         this.setDefaultHeader()
+        this.setBorderColors("#ddd","black")
     }
 }
 
@@ -191,6 +198,7 @@ export class TritanopeTheme extends AbstractTheme {
         this.setHeaderToDaltonism()
         this.setAmountColorTo("#FFF")
         this.setCellBackgroundColor("#FFF")
+        this.setBorderColors("#ddd","black")
     }
 }
 

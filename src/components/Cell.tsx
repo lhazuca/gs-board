@@ -48,21 +48,21 @@ export default class Cell extends React.Component<CellProps, CellState> {
                     <tbody>
                     <tr>
                         <td>
-                            <Stone color={"blue"} amount={this.props.content.a} leftClick={this.props.addBlue}
+                            <Stone color={"blue"} amount={this.props.attire.image ? 0 : this.props.content.a} leftClick={this.props.addBlue}
                                    rightClick={this.props.removeBlue}/>
                         </td>
                         <td>
-                            <Stone color={"black"} amount={this.props.content.n} leftClick={this.props.addBlack}
+                            <Stone color={"black"} amount={this.props.attire.image ? 0 : this.props.content.n} leftClick={this.props.addBlack}
                                    rightClick={this.props.removeBlack}/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <Stone color={"red"} amount={this.props.content.r} leftClick={this.props.addRed}
+                            <Stone color={"red"} amount={this.props.attire.image ? 0 : this.props.content.r} leftClick={this.props.addRed}
                                    rightClick={this.props.removeRed}/>
                         </td>
                         <td>
-                            <Stone color={"green"} amount={this.props.content.v} leftClick={this.props.addGreen}
+                            <Stone color={"green"} amount={this.props.attire.image ? 0 : this.props.content.v} leftClick={this.props.addGreen}
                                    rightClick={this.props.removeGreen}/>
                         </td>
                     </tr>
